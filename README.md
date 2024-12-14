@@ -37,25 +37,34 @@ Join our discord server Just another 3D printer community: https://discord.gg/SB
    Add:
 
    ```
-   [filament_switch_sensor switch_sensor]
-   switch_pin: PD11
-   pause_on_runout: False
-   runout_gcode:
-     PAUSE #[pause_resume] is required in printer.cfg
-     RESPOND TYPE=error MSG="No filament was detected!"
-   insert_gcode:
-     RESPOND TYPE=echo MSG="Filament was inserted"
+    [filament_switch_sensor switch_sensor]
+    switch_pin: PD11
+    pause_on_runout: False
+    runout_gcode:
+      PAUSE
+      RESPOND TYPE=error MSG= "Filament Runout! Please change filament!"
+    insert_gcode:
+      RESPOND TYPE=echo MSG="Filament inserted"
+      G91
+      G1 E70 F300
+      G1 E10 F150
+      G90
 
-   [filament_motion_sensor encoder_sensor]
-   switch_pin: ^PB14
-   detection_length: 3
-   extruder: extruder
-   pause_on_runout: False
-   runout_gcode:
-     PAUSE # [pause_resume] is required in printer.cfg
-     RESPOND TYPE=error MSG="Filament is stuck!"
-   insert_gcode:
-     RESPOND TYPE=echo MSG="Filament was inserted"
+    [filament_motion_sensor encoder_sensor]
+    switch_pin: ^PB14
+    detection_length: 3.0
+    extruder: extruder
+    pause_on_runout: False
+    runout_gcode:
+      PAUSE
+      RESPOND TYPE=error MSG="Filament stuck!"
+    insert_gcode:
+      RESPOND TYPE=echo MSG="Filament inserted"
+      G91
+      G1 E70 F300
+      G1 E10 F150
+      G90
+  
    ```
 9. Save and restart.
 10. Check if its working:
