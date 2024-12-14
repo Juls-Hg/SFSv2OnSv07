@@ -42,7 +42,7 @@ Join our discord server Just another 3D printer community: https://discord.gg/SB
     pause_on_runout: False
     runout_gcode:
       PAUSE
-      RESPOND TYPE=error MSG= "Filament Runout! Please change filament!"
+      RESPOND TYPE=error MSG="Filament Runout! Please change filament!"
     insert_gcode:
       RESPOND TYPE=echo MSG="Filament inserted"
       G91
